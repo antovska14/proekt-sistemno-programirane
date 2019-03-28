@@ -1,2 +1,2 @@
 # proekt-sistemno-programirane
-C project for 7th semester using Linux
+C project for 6th semester using Linux
