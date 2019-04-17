@@ -5,7 +5,6 @@ void deleteRoute(){
 	
 	printf("\nEnter information about the route you want to delete");
 	printf("\nEnter start destination:");
-	getchar();
 	fgets(startDestination, sizeof startDestination, stdin);
 	startDestination[strcspn(startDestination,"\n")]='\0';
 	printf("\nEnter end destination:");
