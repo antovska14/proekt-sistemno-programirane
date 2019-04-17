@@ -17,7 +17,8 @@ void addNewRoute(){
 	initializeRoute(&newRoute);
 	
 	char addRouteQuery[255];
-	snprintf(addRouteQuery, sizeof addRouteQuery, "INSERT INTO ROUTES(startDestination, endDestination, distance, duration) VALUES('%s','%s',%f,%f);",newRoute.startDestination, newRoute.endDestination, newRoute.distance, newRoute.duration);
+	snprintf(addRouteQuery, sizeof addRouteQuery, "CALL ADD_ROUTE('%s', '%s', %f, %f);"
+,newRoute.startDestination, newRoute.endDestination, newRoute.distance, newRoute.duration);
 		
 	if((mysql_query(connection, addRouteQuery))){
 		printf("%s\n", mysql_error(connection));
