@@ -7,19 +7,19 @@ void getFastestRoute(){
 
 	snprintf(findFastestRouteQuery, sizeof findFastestRouteQuery, "SELECT MIN(duration) FROM ROUTES");
 		
-	if((mysql_query(connection, findFastestRouteQuery))){
-		printf("%s\n", mysql_error(connection));
+	if((mysql_query(mysql_connection, findFastestRouteQuery))){
+		printf("%s\n", mysql_error(mysql_connection));
 	}
-	result = mysql_use_result(connection);
+	result = mysql_use_result(mysql_connection);
 	fastestRouteRow = mysql_fetch_row(result);
 	fastestRoute = atoi(fastestRouteRow[0]);
 	mysql_free_result(result);
 	
 	snprintf(printFastestRouteQuery, sizeof printFastestRouteQuery, "SELECT * FROM ROUTES WHERE 			duration='%g';",fastestRoute);
-	if((mysql_query(connection, printFastestRouteQuery))){
-		printf("%s\n", mysql_error(connection));
+	if((mysql_query(mysql_connection, printFastestRouteQuery))){
+		printf("%s\n", mysql_error(mysql_connection));
 	}
-	result = mysql_use_result(connection);
+	result = mysql_use_result(mysql_connection);
 	fastestRouteRow = mysql_fetch_row(result);
 	printf("\nFastest route:");
 	printf("\n%s -> %s %skm %smin\n\n",fastestRouteRow[1],fastestRouteRow[2],fastestRouteRow[3],fastestRouteRow[4]);

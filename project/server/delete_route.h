@@ -15,7 +15,7 @@ void deleteRoute(){
 
 	snprintf(deleteQuery, sizeof deleteQuery, "DELETE FROM ROUTES WHERE startDestination='%s' AND endDestination='%s'", startDestination, endDestination);
 	
-	if((mysql_query(connection, deleteQuery))){
-		printf("%s\n", mysql_error(connection));
+	if((mysql_query(mysql_connection, deleteQuery))){
+		printf("%s\n", mysql_error(mysql_connection));
 	}
 }

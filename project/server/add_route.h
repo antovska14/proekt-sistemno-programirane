@@ -20,8 +20,8 @@ void addNewRoute(){
 	snprintf(addRouteQuery, sizeof addRouteQuery, "CALL ADD_ROUTE('%s', '%s', %f, %f);"
 ,newRoute.startDestination, newRoute.endDestination, newRoute.distance, newRoute.duration);
 		
-	if((mysql_query(connection, addRouteQuery))){
-		printf("%s\n", mysql_error(connection));
+	if((mysql_query(mysql_connection, addRouteQuery))){
+		printf("%s\n", mysql_error(mysql_connection));
 	}
 }
 

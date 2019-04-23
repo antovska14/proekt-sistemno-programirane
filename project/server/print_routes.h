@@ -3,10 +3,10 @@ void printRoutes(){
 	MYSQL_ROW row;
 
 	char* selectAllQuery = "SELECT * FROM ROUTES";
-	if((mysql_query(connection, selectAllQuery))){
-		printf("%s\n", mysql_error(connection));
+	if((mysql_query(mysql_connection, selectAllQuery))){
+		printf("%s\n", mysql_error(mysql_connection));
 	}
-	result = mysql_use_result(connection);
+	result = mysql_use_result(mysql_connection);
 
 	printf("\nRoutes:\n");
 	while ((row = mysql_fetch_row(result))){
