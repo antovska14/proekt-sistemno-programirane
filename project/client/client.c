@@ -10,26 +10,14 @@
 
 #define PORT 8080
 
-void printMenu();
+#include "client_tcp_socket_implementation.h"
 
+int main(){
 	int socket_fd = createSocket();
-	connectToServer();  
+	connectToServer(socket_fd);  
     
 	sendToServer(socket_fd); 
   
 	close(socket_fd); 
 	return 0;
-}
-
-
-
-void printMenu(){
-	printf("\n");
-	printf("1. Add new route\n");
-	printf("2. Delete existing route\n");
-	printf("3. Get fastest route\n");
-	printf("4. Get shortest route\n");
-	printf("5. Print all routes\n");
-	printf("6. Exit\n");
-	printf("\n");
 }

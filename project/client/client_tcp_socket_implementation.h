@@ -1,3 +1,14 @@
+void printMenu(){
+	printf("\n");
+	printf("1. Add new route\n");
+	printf("2. Delete existing route\n");
+	printf("3. Get fastest route\n");
+	printf("4. Get shortest route\n");
+	printf("5. Print all routes\n");
+	printf("6. Exit\n");
+	printf("\n");
+}
+
 int createSocket(){
 	int socket_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (socket_fd == -1) { 
@@ -10,7 +21,7 @@ int createSocket(){
 	return socket_fd;
 }
 
-void connectToServer(){
+void connectToServer(int socket_fd){
 	struct sockaddr_in serverAddress;
 	bzero(&serverAddress, sizeof(serverAddress)); 
   
@@ -29,21 +40,23 @@ void connectToServer(){
     }  
 }
 
-int main(){
 
 void sendToServer(int socket_fd){
+	int n;
 	int option;
 	char buffer[30];
 	while(1){
 		printf("Enter one of the following options:\n");
 		printMenu();
-		scanf("%d", &option);
-
-		write(socket_fd, &option, sizeof(int));
+		option = 1;
+		if(write(socket_fd, &option, sizeof(int)) < 0){
+			printf("Error writing to socket");
+		}
 
 		bzero(buffer, 30);
-		read(socket_fd, buffer, sizeof(buffer));  
-
+		if( read(socket_fd, buffer, sizeof(buffer)) < 0){
+			printf("Error reading from socket");
+		}  
 		printf("From server: %s", buffer); 
 
 		if( option == 6){

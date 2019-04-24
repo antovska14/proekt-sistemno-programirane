@@ -59,11 +59,20 @@ void respondToClient(int socket_fd){
 	char buffer[30];
 	int n;
 
+	RoutesList* head =  loadRoutesFromDatabase();
+	RoutesList* current = head;
+	while(current != NULL){
+		printf("%s\n",current->route.startDestination);
+		current = current-> next;
+	}
+
 	int option;
 
 	while(1){
-		read(socket_fd, &option, sizeof(int)); 
-
+		if(read(socket_fd, &option, sizeof(int))<0){
+			printf("Error reading from socket");		
+		} 
+		printf("%s\n",current->route.startDestination);
 		bzero(buffer, 30); 
 		switch(option)
 		{
@@ -76,8 +85,9 @@ void respondToClient(int socket_fd){
 			default: printf("Option does not exist\n");break;	
 		}
 
-		write(socket_fd, buffer, sizeof(buffer)); 	
-		
+		if(write(socket_fd, buffer, sizeof(buffer)) < 0){
+			printf("Error writing to socket");	
+		}
 		if( option == 6){
 			printf("Server exit");	
 			break;

@@ -13,6 +13,7 @@ MYSQL* mysql_connection;
 #include "../structures/route.h"
 #include "../structures/route_list.h"
 
+#include "load_routes.h"
 #include "add_route.h"
 #include "delete_route.h"
 #include "shortest_route.h"
