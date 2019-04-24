@@ -8,10 +8,13 @@
 
 #define PORT 8080
 #define DESTINATION_NAME_LENGTH 50
+
 MYSQL* mysql_connection;
 
 #include "../structures/route.h"
-#include "../structures/route_list.h"
+#include "../structures/routes_list.h"
+
+RoutesList* head;
 
 #include "load_routes.h"
 #include "add_route.h"
@@ -40,5 +43,3 @@ int main(){
 	mysql_close(mysql_connection);
 	return 0;
 }
-
-

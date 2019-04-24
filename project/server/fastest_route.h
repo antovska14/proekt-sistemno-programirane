@@ -10,9 +10,10 @@ void getFastestRoute(){
 	if((mysql_query(mysql_connection, findFastestRouteQuery))){
 		printf("%s\n", mysql_error(mysql_connection));
 	}
+
 	result = mysql_use_result(mysql_connection);
 	fastestRouteRow = mysql_fetch_row(result);
-	fastestRoute = atoi(fastestRouteRow[0]);
+	fastestRoute = atof(fastestRouteRow[0]);
 	mysql_free_result(result);
 	
 	snprintf(printFastestRouteQuery, sizeof printFastestRouteQuery, "SELECT * FROM ROUTES WHERE 			duration='%g';",fastestRoute);

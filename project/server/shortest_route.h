@@ -12,7 +12,7 @@ void getShortestRoute(){
 	}
 	result = mysql_use_result(mysql_connection);
 	shortestDistanceRow = mysql_fetch_row(result);
-	shortestDistance = atoi(shortestDistanceRow[0]);
+	shortestDistance = atof(shortestDistanceRow[0]);
 	mysql_free_result(result);
 	
 	snprintf(printShortestRouteQuery, sizeof printShortestRouteQuery, "SELECT * FROM ROUTES WHERE distance='%g';",shortestDistance);

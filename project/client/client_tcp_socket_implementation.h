@@ -46,17 +46,15 @@ void sendToServer(int socket_fd){
 	int option;
 	char buffer[30];
 	while(1){
+		bzero(buffer, 30);
 		printf("Enter one of the following options:\n");
 		printMenu();
-		option = 1;
-		if(write(socket_fd, &option, sizeof(int)) < 0){
-			printf("Error writing to socket");
-		}
+		scanf("%d", &option);
 
-		bzero(buffer, 30);
-		if( read(socket_fd, buffer, sizeof(buffer)) < 0){
-			printf("Error reading from socket");
-		}  
+		write(socket_fd, &option, sizeof(int));
+
+		read(socket_fd, buffer, sizeof(buffer)); 
+		buffer[strlen(buffer)]='\0';
 		printf("From server: %s", buffer); 
 
 		if( option == 6){

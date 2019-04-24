@@ -9,6 +9,7 @@ int connectToClient(int socket_fd){
 	}else{
 		printf("Server accepted the client\n");
 	}
+	return client_connection_fd;
 }
 
 void makeServerListening(int socket_fd){
@@ -55,25 +56,17 @@ int createSocket(){
 	return socket_fd;
 }
 
-void respondToClient(int socket_fd){
+void respondToClient(int client_connection_fd){
 	char buffer[30];
-	int n;
-
-	RoutesList* head =  loadRoutesFromDatabase();
-	RoutesList* current = head;
-	while(current != NULL){
-		printf("%s\n",current->route.startDestination);
-		current = current-> next;
-	}
-
 	int option;
-
+	
+	loadRoutesFromDatabase();
+	
 	while(1){
-		if(read(socket_fd, &option, sizeof(int))<0){
-			printf("Error reading from socket");		
-		} 
-		printf("%s\n",current->route.startDestination);
 		bzero(buffer, 30); 
+		read(client_connection_fd, &option, sizeof(int));
+
+		printf("%d", option);
 		switch(option)
 		{
 			case 1: addNewRoute();break;
@@ -84,11 +77,11 @@ void respondToClient(int socket_fd){
 			case 6: printf("Program closed\n");break;	
 			default: printf("Option does not exist\n");break;	
 		}
+		strcpy(buffer, "data");
+		buffer[strlen(buffer)] = '\0';
+		write(client_connection_fd, buffer, sizeof(buffer));
 
-		if(write(socket_fd, buffer, sizeof(buffer)) < 0){
-			printf("Error writing to socket");	
-		}
-		if( option == 6){
+		if( option == 4){
 			printf("Server exit");	
 			break;
 		}
