@@ -2,22 +2,26 @@
 #include <stdlib.h>
 #include <string.h>
 #include <mysql/mysql.h>
-#include <sys/socket.h> 
-#include <netinet/in.h> 
-#include <unistd.h> 
-#include <netdb.h> 
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
+#include <netdb.h>
 #include <arpa/inet.h>
 
 #define PORT 8080
+#define DESTINATION_NAME_LENGTH 50
 
+#include "../structures/route.h"
+#include "fastest_route_print.h"
+#include "shortest_route_print.h"
 #include "client_tcp_socket_implementation.h"
 
 int main(){
 	int socket_fd = createSocket();
-	connectToServer(socket_fd);  
-    
-	sendToServer(socket_fd); 
-  
-	close(socket_fd); 
+	connectToServer(socket_fd);
+
+	sendToServer(socket_fd);
+
+	close(socket_fd);
 	return 0;
 }

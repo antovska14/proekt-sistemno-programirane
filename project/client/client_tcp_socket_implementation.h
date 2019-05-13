@@ -11,54 +11,49 @@ void printMenu(){
 
 int createSocket(){
 	int socket_fd = socket(AF_INET, SOCK_STREAM, 0);
-	if (socket_fd == -1) { 
-    	    	printf("socket creation failed...\n"); 
-    	    	exit(0); 
-    	} 
-    	else{
-        	printf("Socket successfully created..\n"); 
+	if (socket_fd == -1) {
+		printf("socket creation failed...\n");
+		exit(0);
+	} else{
+		printf("Socket successfully created..\n");
 	}
 	return socket_fd;
 }
 
 void connectToServer(int socket_fd){
 	struct sockaddr_in serverAddress;
-	bzero(&serverAddress, sizeof(serverAddress)); 
-  
+	bzero(&serverAddress, sizeof(serverAddress));
 
-    serverAddress.sin_family = AF_INET; 
-    serverAddress.sin_addr.s_addr = inet_addr("127.0.0.1"); 
-    serverAddress.sin_port = htons(PORT); 
-  
+	serverAddress.sin_family = AF_INET;
+	serverAddress.sin_addr.s_addr = inet_addr("127.0.0.1");
+	serverAddress.sin_port = htons(PORT);
 
-    if (connect(socket_fd, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) != 0) { 
-        printf("connection with the server failed...\n"); 
-        exit(0); 
-    } 
-    else{
-        printf("connected to the server..\n"); 
-    }  
+	if (connect(socket_fd, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) != 0) {
+		printf("connection with the server failed...\n");
+		exit(0);
+	}       else{
+		printf("connected to the server..\n");
+	}
 }
-
 
 void sendToServer(int socket_fd){
 	int n;
 	int option;
-	char buffer[30];
-	while(1){
-		bzero(buffer, 30);
+	while(1) {
 		printf("Enter one of the following options:\n");
 		printMenu();
+
 		scanf("%d", &option);
-
 		write(socket_fd, &option, sizeof(int));
+		switch (option) {
+		case 3: printFastestRoute(socket_fd); break;
+		case 4: printShortestRoute(socket_fd); break;
+		case 6: printf("Program exit"); break;
+		default: printf("Option does not exist"); break;
+		}
 
-		read(socket_fd, buffer, sizeof(buffer)); 
-		buffer[strlen(buffer)]='\0';
-		printf("From server: %s", buffer); 
-
-		if( option == 6){
-			printf("Client exit");	
+		if( option == 6) {
+			printf("Client exit");
 			break;
 		}
 	}
