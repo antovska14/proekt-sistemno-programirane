@@ -69,7 +69,7 @@ void respondToClient(int client_connection_fd){
 		printf("%d", option);
 		switch(option)
 		{
-		case 1: addNewRoute(); break;
+		case 1: addNewRoute(client_connection_fd); break;
 		case 2: deleteRoute(); break;
 		case 3: getFastestRoute(client_connection_fd); break;
 		case 4: getShortestRoute(client_connection_fd); break;

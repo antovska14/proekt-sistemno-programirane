@@ -1,6 +1,6 @@
-typedef struct{
-	char startDestination[DESTINATION_NAME_LENGTH];
-	char endDestination[DESTINATION_NAME_LENGTH];
+typedef struct {
+	char *startDestination;
+	char *endDestination;
 	float distance;
 	float duration;
 }Route;

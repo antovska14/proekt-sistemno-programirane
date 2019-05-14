@@ -11,8 +11,8 @@ void deleteRouteFromRoutesList(char* startDestination, char* endDestination){
 	RoutesList* previous = current;
 	RoutesList* nodeToDelete = NULL;
 	while( current != NULL) {
-		if( strcmp(current->route.startDestination, startDestination) == 0
-		    && strcmp(current->route.endDestination, endDestination) == 0 ) {
+		if( strcmp(current->route->startDestination, startDestination) == 0
+		    && strcmp(current->route->endDestination, endDestination) == 0 ) {
 			nodeToDelete = current;
 			break;
 		}
