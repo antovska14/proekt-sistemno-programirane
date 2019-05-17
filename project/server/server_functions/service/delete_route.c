@@ -11,8 +11,8 @@ void deleteRouteFromRoutesList(char* startDestination, char* endDestination){
 	RoutesList* previous = current;
 	RoutesList* nodeToDelete = NULL;
 	while( current != NULL) {
-		if( strcmp(current->route->startDestination, startDestination) == 0
-		    && strcmp(current->route->endDestination, endDestination) == 0 ) {
+		if( strcmp(current->route.startDestination, startDestination) == 0
+		    && strcmp(current->route.endDestination, endDestination) == 0 ) {
 			nodeToDelete = current;
 			break;
 		}
@@ -32,18 +32,12 @@ void deleteRouteFromRoutesList(char* startDestination, char* endDestination){
 	}
 }
 
-void deleteRoute(){
-	char startDestination[DESTINATION_NAME_LENGTH];
-	char endDestination[DESTINATION_NAME_LENGTH];
-
-	printf("\nEnter information about the route you want to delete");
-	printf("\nEnter start destination:");
-	fgets(startDestination, sizeof(startDestination), stdin);
-	startDestination[strcspn(startDestination,"\n")]='\0';
-	printf("\nEnter end destination:");
-	fgets(endDestination, sizeof(endDestination), stdin);
-	endDestination[strcspn(endDestination,"\n")]='\0';
-
-	deleteRouteFromDatabase(startDestination, endDestination);
-	deleteRouteFromRoutesList(startDestination, endDestination);
+void deleteRoute(int client_connection_fd){
+	char buffer[10];
+	strcpy(buffer, "hellooo");
+	write(client_connection_fd, buffer, sizeof(buffer));
+	DeleteRouteData route;
+	read(client_connection_fd, &route, sizeof(DeleteRouteData));
+	deleteRouteFromDatabase(route.startDestination, route.endDestination);
+	deleteRouteFromRoutesList(route.startDestination, route.endDestination);
 }

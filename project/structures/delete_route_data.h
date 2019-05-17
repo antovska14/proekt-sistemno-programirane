@@ -1,4 +1,4 @@
 typedef struct {
-	char *startDestination;
-	char *endDestination;
-}DeleteRoute;
+	char startDestination[50];
+	char endDestination[50];
+}DeleteRouteData;

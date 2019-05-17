@@ -1,4 +1,4 @@
 typedef struct node {
-	Route* route;
+	Route route;
 	struct node *next;
 }RoutesList;

@@ -36,24 +36,24 @@ void connectToServer(int socket_fd){
 	}
 }
 
-void sendToServer(int socket_fd){
+void serverComunicationService(int socket_fd){
 	int n;
 	int option;
-	char optionValue[2];
+	char optionString[20];
 	while(1) {
 		printf("Enter one of the following options:\n");
 		printMenu();
-		scanf("%d", &option);
-		fflush(stdin);
+		fgets(optionString, sizeof(optionString), stdin);
+		option = atoi(optionString);
 		write(socket_fd, &option, sizeof(int));
 		switch (option) {
-		case 1: addNewRoute(socket_fd);
+		case 1: addNewRoute(socket_fd); break;
+		case 2: deleteRoute(socket_fd); break;
 		case 3: printFastestRoute(socket_fd); break;
 		case 4: printShortestRoute(socket_fd); break;
 		case 6: printf("Program exit"); break;
 		default: printf("Option does not exist"); break;
 		}
-
 		if( option == 6) {
 			printf("Client exit");
 			break;

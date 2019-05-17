@@ -56,7 +56,7 @@ int createSocket(){
 	return socket_fd;
 }
 
-void respondToClient(int client_connection_fd){
+void clientComunicationService(int client_connection_fd){
 	char buffer[30];
 	int option;
 
@@ -64,13 +64,10 @@ void respondToClient(int client_connection_fd){
 
 	while(1) {
 		read(client_connection_fd, &option, sizeof(int));
-		RoutesList* fastestRoute;
-		RoutesList* shortestRoute;
-		printf("%d", option);
 		switch(option)
 		{
 		case 1: addNewRoute(client_connection_fd); break;
-		case 2: deleteRoute(); break;
+		case 2: deleteRoute(client_connection_fd); break;
 		case 3: getFastestRoute(client_connection_fd); break;
 		case 4: getShortestRoute(client_connection_fd); break;
 		case 5: printRoutes(); break;
