@@ -25,8 +25,8 @@ Route initializeRoute(){
 
 void addNewRoute(int socket_fd){
 	char buffer[10];
-	Route newRoute = initializeRoute();
 	read(socket_fd, buffer, sizeof(buffer));
+	Route newRoute = initializeRoute();
 	printf("%s", buffer);
 	write(socket_fd, &newRoute, sizeof(Route));
 }

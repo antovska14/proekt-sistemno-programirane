@@ -16,7 +16,7 @@ void getFastestRoute(int client_connection_fd);
 void getShortestRoute(int client_connection_fd);
 
 int connectToClient(int socket_fd);
-void makeServerListening(int socket_fd);
+void makeServerListen(int socket_fd);
 struct sockaddr_in initializeServer();
 void bindServerToLocalHost(int socket_fd, struct sockaddr_in serverAddress);
 int createSocket();

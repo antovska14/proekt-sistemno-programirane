@@ -36,7 +36,7 @@ int main(){
 
 	struct sockaddr_in serverAddress = initializeServer();
 	bindServerToLocalHost(socket_fd, serverAddress);
-	makeServerListening(socket_fd);
+	makeServerListen(socket_fd);
 
 	int client_connection_fd = connectToClient(socket_fd);
 	clientComunicationService(client_connection_fd);

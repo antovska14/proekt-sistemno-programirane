@@ -12,7 +12,7 @@ int connectToClient(int socket_fd){
 	return client_connection_fd;
 }
 
-void makeServerListening(int socket_fd){
+void makeServerListen(int socket_fd){
 	if ((listen(socket_fd, 5)) != 0) {
 		printf("Listen failed...\n");
 		exit(0);
