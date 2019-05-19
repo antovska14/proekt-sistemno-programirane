@@ -6,9 +6,15 @@ CREATE TABLE IF NOT EXISTS ROUTES(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     startDestination VARCHAR(60) NOT NULL,
     endDestination VARCHAR(60) NOT NULL,
-    distance DECIMAL NOT NULL,
-    duration DECIMAL NOT NULL
+    distance DECIMAL(10,2) NOT NULL,
+    duration DECIMAL(10,2) NOT NULL
 );
+
+INSERT INTO ROUTES(startDestination, endDestination, distance, duration) VALUES
+    ( 'Studentski Grad', 'Druzhba', 5.4, 22 ),
+    ( 'Druzhba', 'Nadezhda', 13.2 , 58 ),
+    ( 'Studentski Grad', 'Manastirski Livadi', 6.7, 31 ),
+    ( 'Druzhba', 'Studentski Grad', 5.6, 25 );
 
 DELIMITER | 
 CREATE PROCEDURE ADD_ROUTE(paramStart VARCHAR(100), paramEnd VARCHAR(100),
