@@ -25,9 +25,8 @@ gcc -o resultClient client/client.c -lmysqlclient
 **Run the following commands to start the program:**
 
 ```bash
-./resultClient
-```
-
-```bash
 ./resultServer
+```
+```bash
+./resultClient
 ```
