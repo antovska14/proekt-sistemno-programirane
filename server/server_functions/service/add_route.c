@@ -10,9 +10,7 @@ void addRouteToDatabase(Route newRoute){
 
 int compareRoutes(Route route1, Route route2){
 	if(strcmp(route1.startDestination,route2.startDestination) == 0
-	   && strcmp(route1.endDestination,route2.endDestination) == 0
-	   && route1.distance == route2.distance
-	   && route1.duration == route2.duration) {
+	   && strcmp(route1.endDestination,route2.endDestination) == 0) {
 		return 0;
 	}
 
