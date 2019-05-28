@@ -70,7 +70,7 @@ void clientComunicationService(int client_connection_fd){
 		case 2: deleteRoute(client_connection_fd); break;
 		case 3: getFastestRoute(client_connection_fd); break;
 		case 4: getShortestRoute(client_connection_fd); break;
-		case 5: printRoutes(); break;
+		case 5: printRoutes(client_connection_fd); break;
 		case 6: printf("Program closed\n"); break;
 		default: printf("Option does not exist\n"); break;
 		}

@@ -51,6 +51,7 @@ void serverComunicationService(int socket_fd){
 		case 2: deleteRoute(socket_fd); break;
 		case 3: printFastestRoute(socket_fd); break;
 		case 4: printShortestRoute(socket_fd); break;
+		case 5: printRoutes(socket_fd); break;
 		case 6: printf("Program exit"); break;
 		default: printf("Option does not exist"); break;
 		}

@@ -33,9 +33,6 @@ void deleteRouteFromRoutesList(char* startDestination, char* endDestination){
 }
 
 void deleteRoute(int client_connection_fd){
-	char buffer[10];
-	strcpy(buffer, "hellooo");
-	write(client_connection_fd, buffer, sizeof(buffer));
 	DeleteRouteData route;
 	read(client_connection_fd, &route, sizeof(DeleteRouteData));
 	deleteRouteFromDatabase(route.startDestination, route.endDestination);

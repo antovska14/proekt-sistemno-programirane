@@ -5,15 +5,12 @@ void loadRoutesFromDatabase(){
 	char* selectAllQuery = "SELECT * FROM ROUTES";
 	head = NULL;
 
-
 	if((mysql_query(mysql_connection, selectAllQuery))) {
 		printf("%s\n", mysql_error(mysql_connection));
 	}
 	result = mysql_use_result(mysql_connection);
 
-	printf("\nRoutes:\n");
 	while ((row = mysql_fetch_row(result))) {
-
 		RoutesList* newNode = (RoutesList*)malloc(sizeof(RoutesList));
 
 		strcpy(newNode->route.startDestination, row[1]);
@@ -27,10 +24,6 @@ void loadRoutesFromDatabase(){
 
 		newNode->next = head;
 		head = newNode;
-
-		printf("%s -> %s %gkm %gmin \n", newNode->route.startDestination, newNode->route.endDestination, newNode->route.distance, newNode->route.duration);
-		printf("\n");
 	}
-
 	mysql_free_result(result);
 }

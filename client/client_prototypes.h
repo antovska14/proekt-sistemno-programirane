@@ -11,6 +11,9 @@ void printFastestRoute(int socket_fd);
 //shortest_route_print.c
 void printShortestRoute(int socket_fd);
 
+//print_routes.case
+void printRoutes(int socket_fd);
+
 //client_ctp_socket_implementation.c
 void printMenu();
 int createSocket();

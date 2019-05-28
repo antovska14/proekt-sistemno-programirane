@@ -15,6 +15,7 @@
 
 #include "client_prototypes.h"
 
+#include "client_functions/print_routes.c"
 #include "client_functions/fastest_route_print.c"
 #include "client_functions/shortest_route_print.c"
 #include "client_functions/add_route_implementation.c"

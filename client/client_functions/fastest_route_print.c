@@ -1,7 +1,7 @@
 void printFastestRoute(int socket_fd){
 	Route fastestRoute;
-
 	read(socket_fd, &fastestRoute, sizeof(Route));
 
-	printf("Fastest route: %f\n", fastestRoute.duration);
+	printf("Fastest route:\n");
+	printf("%s -> %s %gkm %gmin\n", fastestRoute.startDestination, fastestRoute.endDestination, fastestRoute.distance, fastestRoute.duration);
 }

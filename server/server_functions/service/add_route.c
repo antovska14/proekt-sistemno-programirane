@@ -46,9 +46,6 @@ void addRouteToRoutesList(Route newRoute){
 }
 
 void addNewRoute(int client_connection_fd){
-	char buffer[10];
-	strcpy(buffer, "hello");
-	write(client_connection_fd, buffer, sizeof(buffer));
 	Route newRoute;
 	read(client_connection_fd, &newRoute, sizeof(Route));
 	addRouteToDatabase(newRoute);
