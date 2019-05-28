@@ -3,26 +3,28 @@ Route initializeRoute(){
 	char destination[50];
 	char floatNumber[20];
 
-	printf("Enter start destination\n");
+	printf("\nEnter start destination\n");
 	fgets(destination, sizeof(destination),stdin);
 	strcpy(route.startDestination, destination);
 	route.startDestination[strlen(destination)] = '\0';
 	(route.startDestination)[strcspn(route.startDestination,"\n")]='\0';
 
-	printf("Enter end destination\n");
+	printf("\nEnter end destination\n");
 	fgets(destination, sizeof(destination),stdin);
 	strcpy(route.endDestination, destination);
 	route.endDestination[strlen(destination)] = '\0';
 	(route.endDestination)[strcspn(route.endDestination,"\n")]='\0';
 
-	printf("Enter distance\n");
+	printf("\nEnter distance\n");
 	fgets(floatNumber, sizeof(floatNumber), stdin);
 	route.distance = atof(floatNumber);
 
-	printf("Enter duration\n");
+	printf("\nEnter duration\n");
 	fgets(floatNumber, sizeof(floatNumber), stdin);
 	route.duration = atof(floatNumber);
 	fflush(stdin);
+
+	printf("\n");
 	return route;
 }
 

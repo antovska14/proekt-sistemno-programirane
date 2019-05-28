@@ -1,5 +1,6 @@
 void addRouteToDatabase(Route newRoute){
 	char addRouteQuery[255];
+	//calls a procedure, which adds a route if it's not existant or updates if the new one is faster
 	snprintf(addRouteQuery, sizeof addRouteQuery, "CALL ADD_ROUTE('%s', '%s', %f, %f);"
 	         ,newRoute.startDestination, newRoute.endDestination, newRoute.distance, newRoute.duration);
 	if((mysql_query(mysql_connection, addRouteQuery))) {
@@ -14,19 +15,23 @@ int compareRoutes(Route route1, Route route2){
 	   && route1.duration == route2.duration) {
 		return 0;
 	}
+
 	return -1;
 }
 
 void addRouteToRoutesList(Route newRoute){
 	RoutesList* current = head;
+	//checks if route allready exists
 	while( current != NULL) {
 		//returns zero if routes are equal
 		if( compareRoutes(current->route, newRoute) == 0 ) {
 			if(current->route.duration > newRoute.duration) {
 				current->route.duration = newRoute.duration;
 			}
+			//function exit, no need to add route to routes list as it allready exists
 			return;
 		}
+
 		current = current->next;
 	}
 

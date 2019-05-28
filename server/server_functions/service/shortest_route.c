@@ -6,7 +6,9 @@ void getShortestRoute(int client_connection_fd){
 		if(currentRoute->route.distance < shortestRoute->route.distance) {
 			shortestRoute = currentRoute;
 		}
+
 		currentRoute = currentRoute->next;
 	}
+
 	write(client_connection_fd, &(shortestRoute->route), sizeof(shortestRoute->route));
 }

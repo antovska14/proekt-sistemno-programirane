@@ -1,5 +1,6 @@
 void deleteRoute(int socket_fd){
 	char destination[50];
+	printf("\n");
 
 	DeleteRouteData routeToDelete;
 	printf("Enter start destination\n");
@@ -14,5 +15,6 @@ void deleteRoute(int socket_fd){
 	routeToDelete.endDestination[strlen(destination)] = '\0';
 	(routeToDelete.endDestination)[strcspn(routeToDelete.endDestination,"\n")]='\0';
 
+	printf("\n");
 	write(socket_fd, &routeToDelete, sizeof(DeleteRouteData));
 }

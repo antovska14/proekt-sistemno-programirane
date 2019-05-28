@@ -16,6 +16,7 @@ void deleteRouteFromRoutesList(char* startDestination, char* endDestination){
 			nodeToDelete = current;
 			break;
 		}
+
 		previous = current;
 		current = current->next;
 	}
@@ -28,7 +29,6 @@ void deleteRouteFromRoutesList(char* startDestination, char* endDestination){
 
 	if( nodeToDelete != NULL) {
 		free(nodeToDelete);
-		nodeToDelete = NULL;
 	}
 }
 
